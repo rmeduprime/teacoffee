@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea and Coffee Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, select {
+            padding: 10px;
+            margin: 5px;
+            width: calc(100% - 22px);
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tea and Coffee Orders</h1>
+    
+    <form method="POST" action="/order">
+        <select name="name" required>
+            <option value="" disabled selected>Select name</option>
+            <option value="abhishek">abhishek</option>
+            <option value="sarang">sarang</option>
+            <option value="rhea">rhea</option>
+            <option value="arpan">arpan</option>
+        </select>
+        
+        <select name="drink_type" required>
+            <option value="" disabled selected>Select a Drink</option>
+            <option value="fulltea">Full Tea</option>
+            <option value="fullcoffee">Full Coffee</option>
+            <option value="halfcoffee">Half Coffee</option>
+            <option value="halftea">Half Tea</option>
+            <option value="halflemontea">Half lemon Tea</option>
+            <option value="fulllemontea">Full lemon Tea</option>
+        </select>
+        
+        
+
+        <button type="submit">Place Order</button>
+    </form>
+
+    <h2>Current Orders</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Drink</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.Name }}</td>
+                    <td>{{ order.Drink }}</td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="count">
+        <h3>Drink Counts</h3>
+        <p>Full Tea: {{ drink_counts['Full Tea'] }}</p>
+        <p>Half Tea: {{ drink_counts['Half Tea'] }}</p>
+        <p>Full Coffee: {{ drink_counts['Full Coffee'] }}</p>
+        <p>Half Coffee: {{ drink_counts['Half Coffee'] }}</p>
+        <p>Full Lemon tea: {{ drink_counts['Half Lemon'] }}</p>
+        <p>Half Lemon tea: {{ drink_counts['Full Lemon'] }}</p>
+    </div>
+</body>
+</html>
